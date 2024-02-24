@@ -20,16 +20,21 @@
             }
             .main{
                 flex-basis: 400px;
-                height: 400px;
+                height: max-content;
                 background-color: white;
                 box-shadow: 0px 0px 10px 2px #ccc;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
             }
             .main h3{
-                padding: 20px 20px 10px 20px;
+                padding: 20px 10px 10px 20px;
                 font-size: 30px;
+                align-self: center;
             }
             .main form{
                 padding: 20px;
+
             }
             .form-outer label{
                 display: block;
@@ -42,14 +47,45 @@
             .form-outer button{
                 padding: 10px 0px;
                 width: 100%;
-                background-color: rgb(125, 125, 167);
-                color:rgb(19, 18, 18);
+                background-color: rgb(0, 0, 114);
+                color:rgb(226, 226, 226);
                 font-size: 20px;
                 cursor: pointer;
+                border-radius: 25px;
+                transition: 0.3s;
             }
+            .form-outer button:hover{
+                background-color: rgb(0, 66, 172);
+            }
+
+
+            #form{
+                display: flex;
+                flex-direction: column;
+                row-gap: 20px;
+                font-weight: bold;
+                border-radius: 10px;
+            }
+
+            #main-heading{
+                position: fixed;
+                top: 20px;
+                left: 41%;
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+            
+            @media (max-width:500px) {
+                #main-heading{
+                    left:20% ;
+                    margin-top: 20px;
+                }
+            }
+
         </style>
     </head>
     <body>
+        <div id="main-heading">3 Star Earth Movers</div>
         <div class="main">
             <h3>vehicle details</h3>
             <form  method="post" id = "form">
@@ -67,7 +103,7 @@
                     <input type="text" name="number_plate">
                 </div>
                 <div class="form-outer">
-                    <button name="btn">submit</button>
+                    <button name="btn">Submit</button>
             </div>
             </form>
         </div>
