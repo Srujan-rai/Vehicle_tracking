@@ -115,18 +115,18 @@
         let url ='https://script.google.com/macros/s/AKfycbzAayyXzS-vMom_rUqoAfJDJ3HYltnZouLyGelEmN7Ia2aNwDafXIQfwFKmJYSZAfSyFQ/exec'
         let form=document.querySelector('#form');
         form.addEventListener("submit",(e)=>{
-            // Gather entered values
+
             let name = form.querySelector('input[name="name"]').value;
             let cft = form.querySelector('input[name="cft"]').value;
             let number_plate = form.querySelector('input[name="number_plate"]').value;
 
-            // Construct message with entered values
+
             let confirmationMessage = `Are you sure you want to submit?\n\nName: ${name}\nCFT: ${cft}\nNumber Plate: ${number_plate}`;
 
-            // Show confirmation dialog
+
             let confirmSubmission = window.confirm(confirmationMessage);
             if (!confirmSubmission) {
-                e.preventDefault(); // Prevent form submission if user cancels
+                e.preventDefault(); 
                 return;
             }
             
