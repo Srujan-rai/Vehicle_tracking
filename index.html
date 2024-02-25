@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <title>3 Star Earth Movers</title>
-        <meta name="viewport" content="width-device-width , initial-scale=1">
-        <style>
-            *{
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>3 Star Earth Movers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+        *{
                 margin: 0px;
                 padding: 0px;
                 font-family: sans-serif;
-            }
+          }
             body{
+
                 background-color: rgb(125, 125, 167);
                 height: 100vh;
                 display: flex;
@@ -34,6 +36,7 @@
             }
             .main form{
                 padding: 20px;
+                
 
             }
             .form-outer label{
@@ -82,53 +85,69 @@
                 }
             }
 
-        </style>
+        </style> 
     </head>
-    <body>
-        <div id="main-heading">3 Star Earth Movers</div>
-        <div class="main">
-            <h3>vehicle details</h3>
-            <form  method="post" id = "form">
-                <div id="res" style="color:green;font-size:14px;"></div>
-                <div class="form-outer">
-                    <label>Name</label>
-                    <input type="text" name="name">
-                </div>
-                <div class="form-outer">
-                    <label>CFT</label>
-                    <input type="text" name="cft">
-                </div>
-                <div class="form-outer">
-                    <label>Number_plate</label>
-                    <input type="text" name="number_plate">
-                </div>
-                <div class="form-outer">
-                    <button name="btn">Submit</button>
+<body>
+    <div id="main-heading">3 Star Earth Movers</div>
+    <div class="main">
+        <h3>vehicle details</h3>
+        <form  method="post" id="form">
+            <div id="res" style="color:green;font-size:14px;"></div>
+            <div class="form-outer">
+                <label>Name</label>
+                <input type="text" name="name">
             </div>
-            </form>
-        </div>
-    </body>
-<script>
-    let url ='https://script.google.com/macros/s/AKfycbzAayyXzS-vMom_rUqoAfJDJ3HYltnZouLyGelEmN7Ia2aNwDafXIQfwFKmJYSZAfSyFQ/exec'
-    let form=document.querySelector('#form');
-    form.addEventListener("submit",(e)=>{
-        e.target.btn.innerHTML="Submitting...";
-        let d=new FormData(form);
-        fetch(url,{
-            method:"POST",
-            body:d
-        }).then((res)=>res.text())
-        .then((finalRes)=>{
-            e.target.btn.innerHTML="Submit"
-            document.getElementById("res").innerHTML=finalRes;
-            form.reset();
-            setTimeout(()=>{
-                document.getElementById("res").innerHTML="";
-            },5000)
-            console.log(finalRes)
-        })
-        e.preventDefault();
+            <div class="form-outer">
+                <label>CFT</label>
+                <input type="text" name="cft">
+            </div>
+            <div class="form-outer">
+                <label>Number_plate</label>
+                <input type="text" name="number_plate">
+            </div>
+            <div class="form-outer">
+                <button name="btn">Submit</button>
+            </div>
+        </form>
+    </div>
 
-    })
-</script>
+    <script>
+        let url ='https://script.google.com/macros/s/AKfycbzAayyXzS-vMom_rUqoAfJDJ3HYltnZouLyGelEmN7Ia2aNwDafXIQfwFKmJYSZAfSyFQ/exec'
+        let form=document.querySelector('#form');
+        form.addEventListener("submit",(e)=>{
+            // Gather entered values
+            let name = form.querySelector('input[name="name"]').value;
+            let cft = form.querySelector('input[name="cft"]').value;
+            let number_plate = form.querySelector('input[name="number_plate"]').value;
+
+            // Construct message with entered values
+            let confirmationMessage = `Are you sure you want to submit?\n\nName: ${name}\nCFT: ${cft}\nNumber Plate: ${number_plate}`;
+
+            // Show confirmation dialog
+            let confirmSubmission = window.confirm(confirmationMessage);
+            if (!confirmSubmission) {
+                e.preventDefault(); // Prevent form submission if user cancels
+                return;
+            }
+            
+            e.target.btn.innerHTML="Submitting...";
+            let d=new FormData(form);
+            fetch(url,{
+                method:"POST",
+                body:d
+            }).then((res)=>res.text())
+            .then((finalRes)=>{
+                e.target.btn.innerHTML="Submit"
+                document.getElementById("res").innerHTML=finalRes;
+                form.reset();
+                setTimeout(()=>{
+                    document.getElementById("res").innerHTML="";
+                },5000)
+                console.log(finalRes)
+            })
+            e.preventDefault();
+
+        })
+    </script>
+</body>
 </html>
